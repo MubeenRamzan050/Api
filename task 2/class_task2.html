@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Invoice Calculator</title>
+    <link rel="stylesheet" href="class_task2.css">
+</head>
+<body>
+    <table>
+        <tr>
+            <th>Sr#</th>
+            <th>Item</th>
+            <th>Unit Cost</th>
+            <th>Quantity</th>
+            <th>Cost</th>
+        </tr>
+        <tr>
+            <td>1</td>
+            <td>Item 1</td>
+            <td id="unitCost1">58</td>
+            <td><input type="number" id="qty1" value="0"></td>
+            <td id="cost1">0</td>
+        </tr>
+        <tr>
+            <td>2</td>
+            <td>Item 2</td>
+            <td id="unitCost2">46</td>
+            <td><input type="number" id="qty2" value="0"></td>
+            <td id="cost2">0</td>
+        </tr>
+        <tr>
+            <td>3</td>
+            <td>Item 3</td>
+            <td id="unitCost3">1090</td>
+            <td><input type="number" id="qty3" value="0"></td>
+            <td id="cost3">0</td>
+        </tr>
+        <tr>
+            <td colspan="4">Total</td>
+            <td id="total">0</td>
+        </tr>
+        <tr>
+            <td colspan="4">GST (15%)</td>
+            <td id="gst">0</td>
+        </tr>
+        <tr>
+            <td colspan="4">Grand Total</td>
+            <td id="grandTotal">0</td>
+        </tr>
+    </table>
+    <button onclick="calculateTotal()">Calculate</button>
+
+    <script>
+        function calculateTotal() {
+            let unitCost1 = parseInt(document.getElementById("unitCost1").innerText);
+            let unitCost2 = parseInt(document.getElementById("unitCost2").innerText);
+            let unitCost3 = parseInt(document.getElementById("unitCost3").innerText);
+
+            let qty1 = parseInt(document.getElementById("qty1").value) || 0;
+            let qty2 = parseInt(document.getElementById("qty2").value) || 0;
+            let qty3 = parseInt(document.getElementById("qty3").value) || 0;
+
+            let cost1 = unitCost1 * qty1;
+            let cost2 = unitCost2 * qty2;
+            let cost3 = unitCost3 * qty3;
+
+            document.getElementById("cost1").innerText = cost1;
+            document.getElementById("cost2").innerText = cost2;
+            document.getElementById("cost3").innerText = cost3;
+
+            let total = cost1 + cost2 + cost3;
+            document.getElementById("total").innerText = total;
+            
+            let gst = Math.round(total * 0.15);
+            document.getElementById("gst").innerText = gst;
+
+            let grandTotal = total + gst;
+            document.getElementById("grandTotal").innerText = grandTotal;
+        }
+    </script>
+</body>
+</html>
